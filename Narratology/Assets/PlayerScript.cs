@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour
     private float movementY;
     public float speed = 10;
     private InputAction interact;
+
     
     // De her 2 holder styr på hvilken ting man kan interegere med currently 
     private GameObject currentCollectable;
@@ -33,6 +34,7 @@ public class PlayerScript : MonoBehaviour
        movementX = movementVector.x;
        movementY = movementVector.y;
    }
+   
 
    private void Update()
    {
