@@ -10,19 +10,26 @@ using UnityEngine.InputSystem;
 public class PlayerScript : MonoBehaviour
 {
     
-    private Rigidbody rb;
-    private float movementX;
-    private float movementY;
-    public float speed = 10;
-    private InputAction interact;
+   private Rigidbody rb;
+   private Animator anim;
+    public float walkAnimThreshold;
+   private float movementX;
+   private float movementY;
+   public float speed = 10;
+   private InputAction interact;
+
+    [SerializeField] CameraController camControlScript;
+
+    [SerializeField] Transform cycle1Kiosk_Inside, cycle1Kiosk_Door;
 
     
-    // De her 2 holder styr på hvilken ting man kan interegere med currently 
-    private GameObject currentCollectable;
-    private GameObject currentInteractable;
+   // De her 2 holder styr på hvilken ting man kan interegere med currently 
+   private GameObject currentCollectable;
+   private GameObject currentInteractable;
    void Start()
    {
        rb = GetComponent<Rigidbody>();
+       anim = GetComponent<Animator>();
        interact = InputSystem.actions.FindAction("Interact");
        interact.Enable();
    }
@@ -43,7 +50,7 @@ public class PlayerScript : MonoBehaviour
            if (currentCollectable != null)
            {
                //inventory.Add(currentCollectable.name);
-               Debug.Log("Du samlede " + currentCollectable.name + "op makker");
+               Debug.Log("Du samlede " + currentCollectable.name + " op makker");
                Destroy(currentCollectable);
                currentCollectable = null;
            }
@@ -60,7 +67,17 @@ public class PlayerScript : MonoBehaviour
        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
        rb.AddForce(movement * speed);
 
-       if (movement != Vector3.zero)
+        if(Math.Abs(movement.magnitude) >= walkAnimThreshold)
+        {
+            anim.SetBool("Walking", true);
+        }
+        else
+        {
+            anim.SetBool("Walking", false);
+        }
+
+
+        if (movement != Vector3.zero)
        {
            transform.rotation = Quaternion.LookRotation(movement);
        }
@@ -81,5 +98,42 @@ public class PlayerScript : MonoBehaviour
            Debug.Log("Can interact with: " + other.name);
            currentInteractable = other.gameObject;
        }
+
+        if (other.CompareTag("BackAlley"))
+        {
+            Debug.Log("Switched to back alley camera");
+            camControlScript.SwitchToAlleyCam();
+        }
    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("BackAlley"))
+        {
+            Debug.Log("Switched to main camera");
+            camControlScript.SwitchToMainCam();
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("KioskDoor")) //Get into the kiosk from outside
+        {
+            //REPLACE MAYBE???
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                transform.position = cycle1Kiosk_Inside.position;
+                camControlScript.SwitchToKioskInsideCam();
+            }
+        }
+
+        if (other.CompareTag("KioskInsideDoor")) //Go out from inside the kiosk
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                transform.position = cycle1Kiosk_Door.position;
+                camControlScript.SwitchToMainCam();
+            }
+        }
+    }
 }

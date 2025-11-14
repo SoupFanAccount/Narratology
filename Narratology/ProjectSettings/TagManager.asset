@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Collectable
   - Interactable
+  - BackAlley
+  - KioskDoor
+  - KioskInsideDoor
   layers:
   - Default
   - TransparentFX
