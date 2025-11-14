@@ -1,9 +1,79 @@
 fileFormatVersion: 2
-guid: 6a7900c7e06046848939aebd89a6c65d
+guid: 8e6a369c3a0eb4d499071e6b00c0fffd
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branch
+    second: {fileID: 2100000, guid: 71057896f12872847941f29f4e860405, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branch_1
+    second: {fileID: 2100000, guid: a5bb106f11d59dc41a146991024ec7ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branch_2
+    second: {fileID: 2100000, guid: 2a3623f700c61044d871a4fc24838e3c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branch_3
+    second: {fileID: 2100000, guid: 880d527fca32b7e44a80d21bf9f66af8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branch_4
+    second: {fileID: 2100000, guid: 660519a03725302498419394f5967d5b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branch_5
+    second: {fileID: 2100000, guid: 6a0224590e89ad94181f0d908b75582a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Branch_6
+    second: {fileID: 2100000, guid: 8458ca2840c2d894c89b1ba67e5257e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood
+    second: {fileID: 2100000, guid: 1a4a17ae33d869b418a0442612e23a43, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood_01
+    second: {fileID: 2100000, guid: 7fed87acb42eb8545870a83530fd377b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood_2
+    second: {fileID: 2100000, guid: 0175c5c2516287a45a787651dc6749ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood_3
+    second: {fileID: 2100000, guid: f068aadcd1e877c4ab2783ed764dfa04, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood_4
+    second: {fileID: 2100000, guid: e867a6002f513d649802ffc78e25763b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood_5
+    second: {fileID: 2100000, guid: fd311dfaf008e6c40b95adc3e4fbe2de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood_6
+    second: {fileID: 2100000, guid: 8462837b7eb68db4d8cafc78d2b4c239, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
