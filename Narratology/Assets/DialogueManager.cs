@@ -32,9 +32,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(string[] lines, Interactable npc)
+    public void StartDialogue(string[] lines, Interactable interactableObject)
     {
-        interactable = npc; 
+        interactable = interactableObject; 
         interactable.enabled = false; 
         dialogueController.enabled = true; 
         currentDialogueLines = lines;

@@ -23,9 +23,7 @@ public class DialogueController : MonoBehaviour
         {
             StopCoroutine(writingCoroutine);
         }
-
-        // --- THIS IS THE FIX ---
-        // The "if (Index <= ...)" check is removed.
+        
         
         DialogueText.text = "";
         // We pass the 'sentence' parameter here
@@ -52,12 +50,6 @@ public class DialogueController : MonoBehaviour
         // When the manager enables me, show my UI.
         dialogueBox.SetActive(true);
         
-        /*
-        if (DialgoueAnimator != null)
-        {
-            //DialgoueAnimator.SetTrigger("Open");
-        }
-        */
     }
 
     // Called by the DialogueManager when it sets 'enabled = false'

@@ -3,11 +3,19 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
+    [System.Serializable]
+    public class ConditionalDialogue
+    {
+        public string requiredFlag;
+        public string[] dialogueLines;
+    }
+
     Camera mainCamera;
     public GameObject actionIndicator;
 
     [Header("Dialogue")]
-    public string[] dialogueLines;
+    public string[] defaultDialogue;
+    public ConditionalDialogue[] conditionalDialogues;
 
     void Start()
     {
@@ -36,7 +44,26 @@ public class Interactable : MonoBehaviour
     
     public void StartDialogueFromPlayer()
     {
-        DialogueManager.instance.StartDialogue(dialogueLines, this);
+        string[] dialogue = GetDialogue();
+        DialogueManager.instance.StartDialogue(dialogue, this);
+    }
+
+    private string[] GetDialogue()
+    {
+        // Check conditional dialogues in reverse order (latest conditions first)
+        if (conditionalDialogues != null)
+        {
+            for (int i = conditionalDialogues.Length - 1; i >= 0; i--)
+            {
+                if (DialogueFlags.instance != null && 
+                    DialogueFlags.instance.HasFlag(conditionalDialogues[i].requiredFlag))
+                {
+                    return conditionalDialogues[i].dialogueLines;
+                }
+            }
+        }
+
+        return defaultDialogue;
     }
 
     // Hide the indicator when dialogue starts.

@@ -38,22 +38,25 @@ public class MadsPlayerScript : MonoBehaviour
     {
         if (interact.WasPressedThisFrame())
         {
-            // 1. CHECK DIALOGUE STATE FIRST
-            // Check if the DialogueManager exists and if its dialogue UI is active
+            
             if (DialogueManager.instance != null && DialogueManager.instance.IsDialogueActive())
             {
-                // If it is, we are IN dialogue. Tell the manager to advance.
+                // Hvis man er i en dialog, bliver "interact" brugt til at gå videre i dialogen.
                 DialogueManager.instance.AdvanceDialogue();
             }
-            // 2. ELSE, DO YOUR NORMAL "ROAMING" ACTIONS
+            
             else
             {
-                // We are NOT in dialogue. Look for objects to interact with.
+                // Hvis man ikke er en dialog, så kan man interegere med objekter. 
                 if (currentCollectable != null)
                 {
-                    //inventory.Add(currentCollectable.name);
+                    //Vi kunne bruge inventory.Add(currentCollectable.name); e.g. hvis vi vil have et inventory system (men det har vi ik!)
                     Debug.Log("Du samlede " + currentCollectable.name + "op makker");
+                    // DialogueFlags er et static script der holder styr på conditions.
+                    // Så jeg kalder funktioner fra det når jeg skal have shit i det.
+                    DialogueFlags.instance.SetFlag(currentCollectable.name);
                     Destroy(currentCollectable);
+                    
                     currentCollectable = null;
                 }
                 else if (currentInteractable != null)
@@ -69,8 +72,7 @@ public class MadsPlayerScript : MonoBehaviour
         }
     }
   
-    // The IsDialogueActive() method has been REMOVED from here
-
+    
     private void FixedUpdate()
     {
        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
@@ -83,6 +85,9 @@ public class MadsPlayerScript : MonoBehaviour
     }
 
 
+    
+    // Trigger funktioner hernede
+    
     // Her sættes den interactable og collectable variablerne
     private void OnTriggerEnter(Collider other)
     {
@@ -98,8 +103,7 @@ public class MadsPlayerScript : MonoBehaviour
            currentInteractable = other.gameObject;
        }
     }
-   
-    // This is the bug fix. It clears the variables when you walk away.
+    
     private void OnTriggerExit(Collider other)
     {
        if (other.CompareTag("Collectable"))

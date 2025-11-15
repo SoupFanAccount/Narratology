@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AgentMigrationStateService">
+    <option name="pendingSessionIds">
+      <option value="48643d23-553f-407f-a2db-b1945fd9f9e0" />
+      <option value="7820d523-a158-425b-9d84-d322d16e047f" />
+    </option>
+    <option name="pendingTurns">
+      <map>
+        <entry key="48643d23-553f-407f-a2db-b1945fd9f9e0">
+          <value>
+            <set>
+              <option value="17159c0f-ddbf-4ed0-ad5a-33a4fd7299fc" />
+              <option value="ded3d795-fa4e-463a-81df-c5b3dd6a7c7a" />
+              <option value="9d5e8389-c153-4624-8203-2d13a2ed71d6" />
+              <option value="cecb2929-554e-423a-8ad0-45de0f4557d9" />
+              <option value="30855f40-215a-46d0-a114-902073592a69" />
+              <option value="0a90a389-0275-4681-b556-83b13f2ba9af" />
+              <option value="22ba04a5-0e40-488f-a4ad-561a4a76fbe9" />
+              <option value="12383e54-6348-4861-a15b-4448dcbb81f9" />
+              <option value="41380972-0bfb-4345-8768-98695a54f3ce" />
+              <option value="15132ae3-c2fc-499e-a800-4a0d48f15280" />
+              <option value="c95c4451-cf8c-49d8-9d6f-a352f8e4ee0d" />
+            </set>
+          </value>
+        </entry>
+        <entry key="7820d523-a158-425b-9d84-d322d16e047f">
+          <value>
+            <set>
+              <option value="a5d6ac8c-aaf4-4b76-b03b-e743c31419ed" />
+              <option value="81d8cc0a-a17f-4c0c-91ba-b829f17a7f13" />
+              <option value="28823b62-e4ed-4384-8fc3-3a391f21c6c3" />
+              <option value="2e5702d8-7daa-4a25-a6ed-dffaa1edae70" />
+            </set>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <pendingWorkingSetItems>
+      <entry key="7820d523-a158-425b-9d84-d322d16e047f">
+        <set>
+          <option value="file://$PROJECT_DIR$/Assets/Interactable.cs" />
+          <option value="file://$PROJECT_DIR$/Assets/Scripts/FlagSetter.cs" />
+          <option value="file://$PROJECT_DIR$/Assets/Scripts/DIALOGUE_FLAGS_GUIDE.md" />
+        </set>
+      </entry>
+    </pendingWorkingSetItems>
+  </component>
+</project>
