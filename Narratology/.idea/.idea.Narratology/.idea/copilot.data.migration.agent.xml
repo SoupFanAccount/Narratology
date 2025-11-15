@@ -4,6 +4,8 @@
     <option name="pendingSessionIds">
       <option value="48643d23-553f-407f-a2db-b1945fd9f9e0" />
       <option value="7820d523-a158-425b-9d84-d322d16e047f" />
+      <option value="9dc9e40e-9642-4443-91cf-8b24f8bf7f65" />
+      <option value="9f8ba684-ea98-46be-8dcd-708f2a36994b" />
     </option>
     <option name="pendingTurns">
       <map>
@@ -21,6 +23,11 @@
               <option value="41380972-0bfb-4345-8768-98695a54f3ce" />
               <option value="15132ae3-c2fc-499e-a800-4a0d48f15280" />
               <option value="c95c4451-cf8c-49d8-9d6f-a352f8e4ee0d" />
+              <option value="5b056676-0068-4019-a46a-62c3c10dd8aa" />
+              <option value="86ef73ce-c75b-4c63-be18-15e6ac656f03" />
+              <option value="7a2efd7e-12e4-411d-ac5a-b36c599cf035" />
+              <option value="772ed8e0-97a4-4fd2-acca-b8b19c196308" />
+              <option value="55bc27a2-1aec-426b-9c82-1f78a8429a60" />
             </set>
           </value>
         </entry>
@@ -31,6 +38,20 @@
               <option value="81d8cc0a-a17f-4c0c-91ba-b829f17a7f13" />
               <option value="28823b62-e4ed-4384-8fc3-3a391f21c6c3" />
               <option value="2e5702d8-7daa-4a25-a6ed-dffaa1edae70" />
+            </set>
+          </value>
+        </entry>
+        <entry key="9dc9e40e-9642-4443-91cf-8b24f8bf7f65">
+          <value>
+            <set>
+              <option value="313c13f1-75bc-4e61-8f28-f2da7655e8f4" />
+            </set>
+          </value>
+        </entry>
+        <entry key="9f8ba684-ea98-46be-8dcd-708f2a36994b">
+          <value>
+            <set>
+              <option value="b53279c4-5287-4f08-b77e-a99606ee770f" />
             </set>
           </value>
         </entry>

@@ -12,6 +12,8 @@ public class Interactable : MonoBehaviour
 
     Camera mainCamera;
     public GameObject actionIndicator;
+    public GameObject dialogueCanvas;
+    public GameObject dialogueBubble;
 
     [Header("Dialogue")]
     public string[] defaultDialogue;

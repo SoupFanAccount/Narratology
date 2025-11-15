@@ -23,7 +23,8 @@ public class DialogueFlags : MonoBehaviour
     {
         flags.Add(flagName);
         Debug.Log("Flag set: " + flagName);
-        Debug.Log("The list contains: " + flags.ToString());
+        Debug.Log("The list contains: " + string.Join(", ", flags));
+
     }
 
     public bool HasFlag(string flagName)

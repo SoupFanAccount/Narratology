@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
@@ -11,6 +12,10 @@ public class DialogueManager : MonoBehaviour
     private int currentLineIndex = 0;
 
     public static DialogueManager instance;
+
+    public string firstElement;
+    public string lastElement;
+    public string dialogueAsFlag;
 
     private void Awake()
     {
@@ -52,6 +57,10 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            firstElement = currentDialogueLines[0];
+            //lastElement = currentDialogueLines[currentDialogueLines.Length - 1];
+            //dialogueAsFlag = firstElement + lastElement;
+            DialogueFlags.instance.SetFlag(firstElement);
             EndDialogue();
         }
     }
