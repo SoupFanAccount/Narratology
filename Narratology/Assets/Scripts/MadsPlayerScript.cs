@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
-public class PlayerScript : MonoBehaviour
+public class MadsPlayerScript : MonoBehaviour
 {
     
     private Rigidbody rb;
@@ -33,8 +33,7 @@ public class PlayerScript : MonoBehaviour
        movementY = movementVector.y;
     }
    
-
-    // This is your updated Update method
+    
     private void Update()
     {
         if (interact.WasPressedThisFrame())
