@@ -20,7 +20,7 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField] CameraController camControlScript;
 
-    [SerializeField] Transform cycle1Kiosk_Inside, cycle1Kiosk_Door;
+    [SerializeField] Transform cycle1Kiosk_Inside, cycle1Kiosk_Door, cycle1Toilet_Inside, cycle1Toilet_Door;
 
     
    // De her 2 holder styr på hvilken ting man kan interegere med currently 
@@ -104,11 +104,8 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("Switched to back alley camera");
             camControlScript.SwitchToAlleyCam();
         }
-   }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("BackAlley"))
+        if (other.CompareTag("CameraStateOutside"))
         {
             Debug.Log("Switched to main camera");
             camControlScript.SwitchToMainCam();
@@ -133,6 +130,24 @@ public class PlayerScript : MonoBehaviour
             {
                 transform.position = cycle1Kiosk_Door.position;
                 camControlScript.SwitchToMainCam();
+            }
+        }
+
+        if (other.CompareTag("ToiletDoor")) //Go into toilet from outside
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                transform.position = cycle1Toilet_Inside.position;
+                camControlScript.SwitchToToiletCam();
+            }
+        }
+
+        if (other.CompareTag("ToiletInsideDoor")) //Go out from toilet to outside
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                transform.position = cycle1Toilet_Door.position;
+                camControlScript.SwitchToAlleyCam();
             }
         }
     }
