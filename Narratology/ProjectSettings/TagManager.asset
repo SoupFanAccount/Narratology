@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Collectable
   - Interactable
+  - BackAlley
+  - KioskDoor
+  - KioskInsideDoor
+  - ToiletDoor
+  - ToiletInsideDoor
+  - CameraStateOutside
   layers:
   - Default
   - TransparentFX
