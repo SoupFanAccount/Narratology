@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseScript : MonoBehaviour
 {
     public static bool pauseGame;
     public static bool ableToPause;
     public GameObject pauseMenu;
+    
     
 
     private void Start()
@@ -24,6 +26,7 @@ public class PauseScript : MonoBehaviour
             pauseMethod(pauseGame);
         }
     }
+    
 
     public void pauseMethod(bool pause)
     {
@@ -38,5 +41,10 @@ public class PauseScript : MonoBehaviour
             pauseMenu.SetActive(false);
             Time.timeScale = 1f;
         }
+    }
+
+    public void goToMainMenu()
+    {
+        //SceneManager.LoadScene(MainMenu);
     }
 }
