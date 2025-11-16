@@ -74,6 +74,7 @@ public class WhereAreWe : MonoBehaviour
 
             case 4: //Pump gas into car, SUCCESFULY
                 //Play voice line: "At least it pumps now"
+                playerTalk.StartNewLine("At least it pumps now. Time to go!");
                 break;
 
             case 5: //Get into car and drive away

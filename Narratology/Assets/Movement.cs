@@ -27,7 +27,7 @@ public class Movement : MonoBehaviour
         xRotation -= mouseY;
 
         xRotation = Mathf.Clamp(xRotation, -10, 10);
-        yRotation = Mathf.Clamp(yRotation, -45, 45);
+        yRotation = Mathf.Clamp(yRotation, -135, -45);
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
 

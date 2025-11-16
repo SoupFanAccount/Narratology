@@ -26,7 +26,7 @@ public class PlayerScript : MonoBehaviour
     private bool atKioskDoor, atToiletDoor, atKioskInsideDoor, atToiletInsideDoor;
 
     private bool isAtGasPump;
-    public GameObject gasPumpCollider;
+    public GameObject gasPumpCollider, goodGasPumpCollider;
 
     
    // De her 2 holder styr på hvilken ting man kan interegere med currently 
@@ -43,6 +43,7 @@ public class PlayerScript : MonoBehaviour
         whereAreWe.CheckGameStateAndDoStuff(1);
 
         gasPumpCollider.SetActive(false);
+        goodGasPumpCollider.SetActive(false);
    }
    
 
@@ -116,8 +117,18 @@ public class PlayerScript : MonoBehaviour
 
             if (isAtGasPump)
             {
+                if(whereAreWe.gameState == 4)
+                {
+                    goodGasPumpCollider.gameObject.SetActive(false);
+                }
+                
+                if(gasPumpCollider != null)
+                {
+                    Destroy(gasPumpCollider);
+                }
+
                 whereAreWe.CheckGameStateAndDoStuff(1);
-                Destroy(gasPumpCollider);
+
                 isAtGasPump = false;
             }
         }
@@ -196,6 +207,10 @@ public class PlayerScript : MonoBehaviour
 
 
         if (other.CompareTag("CantGas"))
+        {
+            isAtGasPump = true;
+        }
+        if (other.CompareTag("PumpGas"))
         {
             isAtGasPump = true;
         }
