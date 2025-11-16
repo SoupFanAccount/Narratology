@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public GameObject mainCam, alleyCam, kioskInsideCam, toiletCam;
+    public GameObject mainCam, alleyCam, kioskInsideCam, toiletCam, carCam;
 
     void Start()
     {
@@ -25,6 +25,7 @@ public class CameraController : MonoBehaviour
         alleyCam.SetActive(false);
         kioskInsideCam.SetActive(false);
         toiletCam.SetActive(false);
+        carCam.SetActive(false);
     }
 
     public void SwitchToKioskInsideCam()
@@ -39,5 +40,13 @@ public class CameraController : MonoBehaviour
         alleyCam.SetActive(false);
         kioskInsideCam.SetActive(false);
         //mainCam.SetActive(false); //Ensure that the main camera stays off
+    }
+
+    public void SwitchToCrunchCam()
+    {
+        toiletCam.SetActive(false);
+        alleyCam.SetActive(false);
+        kioskInsideCam.SetActive(false);
+        carCam.SetActive(true);
     }
 }
