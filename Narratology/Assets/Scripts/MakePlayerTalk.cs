@@ -18,6 +18,7 @@ public class MakePlayerTalk : MonoBehaviour
     public float timeBeforeDestroy;
 
     public bool imTalking = false;
+    public float talkingTokens = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

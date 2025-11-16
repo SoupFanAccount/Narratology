@@ -25,6 +25,9 @@ public class PlayerScript : MonoBehaviour
 
     private bool atKioskDoor, atToiletDoor, atKioskInsideDoor, atToiletInsideDoor;
 
+    private bool isAtGasPump;
+    public GameObject gasPumpCollider;
+
     
    // De her 2 holder styr på hvilken ting man kan interegere med currently 
    private GameObject currentCollectable;
@@ -38,6 +41,8 @@ public class PlayerScript : MonoBehaviour
 
         whereAreWe = GetComponent<WhereAreWe>();
         whereAreWe.CheckGameStateAndDoStuff(1);
+
+        gasPumpCollider.SetActive(false);
    }
    
 
@@ -107,6 +112,13 @@ public class PlayerScript : MonoBehaviour
             {
                 transform.position = cycle1Toilet_Door.position;
                 camControlScript.SwitchToAlleyCam();
+            }
+
+            if (isAtGasPump)
+            {
+                whereAreWe.CheckGameStateAndDoStuff(1);
+                Destroy(gasPumpCollider);
+                isAtGasPump = false;
             }
         }
    }
@@ -181,6 +193,12 @@ public class PlayerScript : MonoBehaviour
         {
             atToiletInsideDoor = true;
         }
+
+
+        if (other.CompareTag("CantGas"))
+        {
+            isAtGasPump = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -220,6 +238,12 @@ public class PlayerScript : MonoBehaviour
         if (other.CompareTag("ToiletInsideDoor")) //Go out from toilet to outside
         {
             atToiletInsideDoor = false;
+        }
+
+
+        if (other.CompareTag("CantGas"))
+        {
+            isAtGasPump = false;
         }
     }
 

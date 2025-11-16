@@ -6,7 +6,7 @@ public class WhereAreWe : MonoBehaviour
     PlayerScript player;
     MakePlayerTalk playerTalk;
 
-    void Start()
+    void Awake()
     {
         player = GetComponent<PlayerScript>();
         playerTalk = GetComponent<MakePlayerTalk>();
@@ -24,23 +24,48 @@ public class WhereAreWe : MonoBehaviour
             case 0: //Dude er lige stået ud af bilen og skal have noget benzin
                 //Play voice line: "I need to pay for gas inside before it can pump"
                 playerTalk.StartNewLine("I need to pay for gas inside before it can pump.");
+
+                //For talking next time.
+                playerTalk.talkingTokens = 1;
                 break;
 
             case 1: //Når man snakker med Clerk første gang
                 //Start dialogue med Clerk
-                if (playerTalk.imTalking)
+                if (playerTalk.imTalking && playerTalk.talkingTokens > 0)
                 {
                     playerTalk.StartNewLine("Hello, can I get 10 gallons of gas?");
                     DialogueFlags.instance.SetFlag("1st question");
+                    playerTalk.talkingTokens--;
+                    Debug.Log(playerTalk.talkingTokens);
                 }
+
+                player.gasPumpCollider.SetActive(true);
+
                 break;
 
             case 2: //Interact with Gas pump, but no receipt
                 //Play voice line: "Where's the receipt...?"
+                playerTalk.StartNewLine("Nothing? I could've sworn... Where's the receipt? Guess I'll ask the clerk.");
+                DialogueFlags.instance.SetFlag("Gas again");
+
+                playerTalk.talkingTokens = 2;
                 break;   
 
             case 3: //Talk with clerk AGAIN
                     //Play voice line: "Uh, I paid for gas???"
+                if(playerTalk.talkingTokens == 2)
+                {
+                    playerTalk.StartNewLine("Uh, I paid for some gas?");
+                    DialogueFlags.instance.SetFlag("Gas again 2");
+                    playerTalk.talkingTokens--;
+                }
+                else if(playerTalk.talkingTokens == 1)
+                {
+                    playerTalk.StartNewLine("Strange... Alright, I need 10 gallons.");
+                    DialogueFlags.instance.SetFlag("Gas again 3");
+                    playerTalk.talkingTokens--;
+                }
+
 
                 //If player walks into the mysterious room (not bathroom){
                 //   The player can pick up an object (then play voice line: "huh, an [ITEM]" 

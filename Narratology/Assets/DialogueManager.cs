@@ -74,8 +74,18 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         Debug.Log("Ended dialogue");
-        playerTalk.imTalking = true;
-        whereAreWe.CheckGameStateAndDoStuff(1);
+        if (playerTalk.talkingTokens > 0)
+        {
+            playerTalk.imTalking = true;
+            if(playerTalk.talkingTokens > 1)
+            {
+                whereAreWe.CheckGameStateAndDoStuff(0);
+            }
+            else
+            {
+                whereAreWe.CheckGameStateAndDoStuff(1);
+            }
+        }
 
         dialogueController.enabled = false; 
         interactable.enabled = true; 

@@ -12,6 +12,7 @@ TagManager:
   - ToiletDoor
   - ToiletInsideDoor
   - CameraStateOutside
+  - CantGas
   layers:
   - Default
   - TransparentFX

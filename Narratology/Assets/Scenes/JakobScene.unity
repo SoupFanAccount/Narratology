@@ -155,6 +155,59 @@ Transform:
   - {fileID: 1323970933}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &60990520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 60990521}
+  - component: {fileID: 60990522}
+  m_Layer: 0
+  m_Name: CANT TAKE GAS TASK
+  m_TagString: CantGas
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &60990521
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60990520}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.987, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 118982605}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &60990522
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60990520}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &69260487
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +526,11 @@ Transform:
   - {fileID: 455811624}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
+--- !u!4 &118982605 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5420143517938034303, guid: 78dfa232b13431147b998fbb2b349fcb, type: 3}
+  m_PrefabInstance: {fileID: 1807894181}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &129109538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2092,18 +2150,54 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8889403909063770996, guid: 0350f9d014462f74bb6148bdb3bfc454, type: 3}
       propertyPath: 'defaultDialogue.Array.data[0]'
-      value: '"Hello, what can i do for you?"'
+      value: '"Hello, what can I do for you?"'
       objectReference: {fileID: 0}
     - target: {fileID: 8889403909063770996, guid: 0350f9d014462f74bb6148bdb3bfc454, type: 3}
       propertyPath: 'defaultDialogue.Array.data[1]'
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8889403909063770996, guid: 0350f9d014462f74bb6148bdb3bfc454, type: 3}
+      propertyPath: conditionalDialogues.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8889403909063770996, guid: 0350f9d014462f74bb6148bdb3bfc454, type: 3}
       propertyPath: conditionalDialogues.Array.data[0].requiredFlag
       value: 1st question
       objectReference: {fileID: 0}
     - target: {fileID: 8889403909063770996, guid: 0350f9d014462f74bb6148bdb3bfc454, type: 3}
+      propertyPath: conditionalDialogues.Array.data[1].requiredFlag
+      value: Gas again
+      objectReference: {fileID: 0}
+    - target: {fileID: 8889403909063770996, guid: 0350f9d014462f74bb6148bdb3bfc454, type: 3}
+      propertyPath: conditionalDialogues.Array.data[2].requiredFlag
+      value: Gas again 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8889403909063770996, guid: 0350f9d014462f74bb6148bdb3bfc454, type: 3}
+      propertyPath: conditionalDialogues.Array.data[3].requiredFlag
+      value: Gas again 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8889403909063770996, guid: 0350f9d014462f74bb6148bdb3bfc454, type: 3}
+      propertyPath: conditionalDialogues.Array.data[2].dialogueLines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8889403909063770996, guid: 0350f9d014462f74bb6148bdb3bfc454, type: 3}
+      propertyPath: conditionalDialogues.Array.data[3].dialogueLines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8889403909063770996, guid: 0350f9d014462f74bb6148bdb3bfc454, type: 3}
       propertyPath: 'conditionalDialogues.Array.data[0].dialogueLines.Array.data[0]'
+      value: Sure thing
+      objectReference: {fileID: 0}
+    - target: {fileID: 8889403909063770996, guid: 0350f9d014462f74bb6148bdb3bfc454, type: 3}
+      propertyPath: 'conditionalDialogues.Array.data[1].dialogueLines.Array.data[0]'
+      value: Hello, what can I do for you?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8889403909063770996, guid: 0350f9d014462f74bb6148bdb3bfc454, type: 3}
+      propertyPath: 'conditionalDialogues.Array.data[2].dialogueLines.Array.data[0]'
+      value: First time I've seen you. How much gas?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8889403909063770996, guid: 0350f9d014462f74bb6148bdb3bfc454, type: 3}
+      propertyPath: 'conditionalDialogues.Array.data[3].dialogueLines.Array.data[0]'
       value: Sure thing
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7062,6 +7156,7 @@ MonoBehaviour:
   cycle1Kiosk_Door: {fileID: 1792005666}
   cycle1Toilet_Inside: {fileID: 595815694}
   cycle1Toilet_Door: {fileID: 1350778060}
+  gasPumpCollider: {fileID: 60990520}
 --- !u!114 &1407533466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7079,6 +7174,7 @@ MonoBehaviour:
   DialogueSpeed: 0.05
   timeBeforeDestroy: 2
   imTalking: 0
+  talkingTokens: 0
 --- !u!114 &1407533467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8487,7 +8583,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5420143517938034303, guid: 78dfa232b13431147b998fbb2b349fcb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 60990521}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78dfa232b13431147b998fbb2b349fcb, type: 3}
 --- !u!1001 &1819183502
