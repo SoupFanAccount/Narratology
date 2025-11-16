@@ -15,10 +15,14 @@ public class MakePlayerTalk : MonoBehaviour
 
     private Coroutine writingCoroutine;
 
+    public float timeBeforeDestroy;
+
+    public bool imTalking = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        //StartNewLine("Hej med dig din lømmel. Det er da dejligt at se dig i dag!");
     }
 
     // Update is called once per frame
@@ -51,6 +55,15 @@ public class MakePlayerTalk : MonoBehaviour
         }
         // Coroutine is finished
         writingCoroutine = null;
+        
+        StartCoroutine(EmptyTextAfterTime());
     }
 
+
+    IEnumerator EmptyTextAfterTime()
+    {
+        yield return new WaitForSeconds(timeBeforeDestroy);
+        DialogueText.text = "";
+        imTalking = false;
+    }
 }

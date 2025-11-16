@@ -9,7 +9,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerScript : MonoBehaviour
 {
-    
+    WhereAreWe whereAreWe;
+
    private Rigidbody rb;
    private Animator anim;
     public float walkAnimThreshold;
@@ -34,6 +35,9 @@ public class PlayerScript : MonoBehaviour
        anim = GetComponent<Animator>();
        interact = InputSystem.actions.FindAction("Interact");
        interact.Enable();
+
+        whereAreWe = GetComponent<WhereAreWe>();
+        whereAreWe.CheckGameStateAndDoStuff(1);
    }
    
 

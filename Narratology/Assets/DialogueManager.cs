@@ -4,6 +4,8 @@ using UnityEngine;
 public class DialogueManager : MonoBehaviour
 {
     [Header("Script References")]
+    public MakePlayerTalk playerTalk;
+    public WhereAreWe whereAreWe;
     public Interactable interactable;
     public DialogueController dialogueController; 
 
@@ -49,24 +51,32 @@ public class DialogueManager : MonoBehaviour
 
     public void AdvanceDialogue()
     {
-        currentLineIndex++; 
+        if (playerTalk.imTalking == false)
+        {
+            currentLineIndex++;
 
-        if (currentLineIndex < currentDialogueLines.Length)
-        {
-            dialogueController.StartNewLine(currentDialogueLines[currentLineIndex]);
-        }
-        else
-        {
-            firstElement = currentDialogueLines[0];
-            //lastElement = currentDialogueLines[currentDialogueLines.Length - 1];
-            //dialogueAsFlag = firstElement + lastElement;
-            DialogueFlags.instance.SetFlag(firstElement);
-            EndDialogue();
+            if (currentLineIndex < currentDialogueLines.Length)
+            {
+                dialogueController.StartNewLine(currentDialogueLines[currentLineIndex]);
+            }
+            else
+            {
+                firstElement = currentDialogueLines[0];
+                //lastElement = currentDialogueLines[currentDialogueLines.Length - 1];
+                //dialogueAsFlag = firstElement + lastElement;
+                DialogueFlags.instance.SetFlag(firstElement);
+                EndDialogue();
+
+            }
         }
     }
 
     public void EndDialogue()
     {
+        Debug.Log("Ended dialogue");
+        playerTalk.imTalking = true;
+        whereAreWe.CheckGameStateAndDoStuff(1);
+
         dialogueController.enabled = false; 
         interactable.enabled = true; 
         currentDialogueLines = null;
