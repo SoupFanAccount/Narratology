@@ -9,124 +9,147 @@ using UnityEngine.Splines;
 
 public class SpeedCheck : MonoBehaviour
 {
-    private float switchTimer = 8f;
-    public bool isStopped = false;
-
-    public Transform[] inPoints;
-    public Transform[] outPoints;
-
-    /*public Transform inStart;
-    public Transform in2;
-    public Transform in3;
-    public Transform in4;
-    public Transform in5;
-    public Transform in6;
-
-    public Transform out1;
-    public Transform out2;
-    public Transform out3;
-    public Transform out4;
-    public Transform outExit;*/
-
+    public SplineContainer inSpline;
+    public SplineContainer outSpline;
+    
+    public SplineAnimate splineAnim;
     public Animator carAnimator;
 
     public GameObject car;
     public GameObject guy;
-    public GameObject openDoor;
-    //public List<GameObject> inPoints;
-    //public List<GameObject> outPoints;
+
+    public int round = 0;
+    public GasArea_NotToilet gasArea;
+    public bool carInside;
+
+    public ParticleSystem stationFogSmall;
+    public ParticleSystem stationFogBig;
+    public ParticleSystem carFog;
+    private ParticleSystem.EmissionModule smallEmission;
+    private ParticleSystem.EmissionModule bigEmission;
 
     public CameraController camSwitch;
-
-    public float speed = 15f;
-    public float rotationSpeed = 3f;
-    public float breakingDistance = 10f;
-    public float reachThreshold = 0.1f;
-
-    private int currentIndex = 0;
-    private float currentSpeed;
+    public bool isStopped = false;
 
     private void Start()
     {
-        currentSpeed = speed;
-        //camSwitch.SwitchToCrunchCam();
+        smallEmission = stationFogSmall.emission;
+        bigEmission = stationFogBig.emission;
 
-        carAnimator = GetComponent<Animator>();
+        stationFogSmall.Stop();
+        stationFogBig.Stop();
+        carFog.Play();
+
+        splineAnim.Container = inSpline;
+        splineAnim.Loop = SplineAnimate.LoopMode.Once;
+        splineAnim.Easing = SplineAnimate.EasingMode.EaseOut;
+
+        splineAnim.Completed += OnSplineReachedEnd;
+        
+        //splineAnim.Completed += StopCar;
+        splineAnim.Play();
+
+        carAnimator = car.GetComponent<Animator>();
         carAnimator.SetBool("isStopped", false);
 
-        //List<Transform> inPoints = new List<Transform>() {inStart, in2, in3, in4, in5, in6};
-        //List<Transform> outPoints = new List<Transform>() {out1, out2, out3, out4, outExit};
+        //var smallEmission = stationFogSmall.emission;
+        //var bigEmission = stationFogSmall.emission;
     }
 
     void Update()
     {
-        StopCar();
-        StartCar();
+        //StartCar();
     }
 
-    void StopCar()
+    void OnSplineReachedEnd()
     {
-        bool finalSegment = currentIndex == inPoints.Length - 1;
-        Transform target = inPoints[currentIndex];
-
-        Vector3 direction = (target.position - transform.position).normalized;
-
-        if (direction != Vector3.zero)
+        if(splineAnim.Container == inSpline)
         {
-            Quaternion lookRot = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation,
-                lookRot,
-                rotationSpeed * Time.deltaTime);
-        }
-
-        float distanceToTarget = Vector3.Distance(transform.position, target.position);
-
-        if (finalSegment && distanceToTarget < breakingDistance)
-        {
-            currentSpeed = Mathf.Lerp(0f, speed, distanceToTarget / breakingDistance);
+            if (!isStopped)
+            {
+                StartCoroutine(PlayStopAnimation());
+            }
         }
         else
         {
-            currentSpeed = speed;
-        }
-
-        transform.position += transform.forward * currentSpeed * Time.deltaTime;
-
-        if (distanceToTarget < 1f)
-        {
-            currentIndex++;
-
-            if (currentIndex >= inPoints.Length)
-            {
-                currentIndex = inPoints.Length - 1;
-
-                currentSpeed = 0f;
-                enabled = false;
-            }
-        }
-
-        if (currentIndex == inPoints.Length-1)
-        {
-            StartCoroutine(SwitchDelay(4f));
-            isStopped = true;
-            switchTimer = 0f;
-        }
-        IEnumerator SwitchDelay(float switchDelay)
-        {
-            yield return new WaitForSeconds(switchDelay);
-            guy.SetActive(true);
-            camSwitch.SwitchToMainCam();
+            StartCoroutine(ResetLoop());
         }
     }
 
-    void StartCar()
+    public void PlayGasAnimation()
     {
-
+        if(carInside == true && round != 2)
+        {
+            carAnimator.SetBool("needsGas", true);
+        }
     }
 
-    void Loop()
+    IEnumerator PlayStopAnimation()
     {
+        smallEmission.rateOverTime = 30f;
+        bigEmission.rateOverTime = 50f;
+
+        stationFogSmall.Play();
+        stationFogBig.Play();
+        carFog.Stop();
         
+        isStopped = true;
+        carAnimator.SetBool("isStopped", true);
+
+        yield return new WaitForSeconds(5f);
+
+        guy.SetActive(true);
+        camSwitch.SwitchToMainCam();
+    }
+
+    public void EnterCar()
+    {
+        StartCoroutine(StartCar());
+    }
+
+    IEnumerator StartCar()
+    {
+        carAnimator.SetBool("isStopped", false);
+
+        yield return new WaitForSeconds(4f);
+
+        camSwitch.SwitchToCrunchCam();
+        guy.SetActive(false);
+
+        splineAnim.Easing = SplineAnimate.EasingMode.EaseIn;
+        splineAnim.Container = outSpline;
+
+        yield return new WaitForSeconds(3f);
+
+        splineAnim.Restart(true);
+        isStopped = false;
+
+        carFog.Play();
+
+
+        yield return new WaitForSeconds(2f);
+
+        smallEmission.rateOverTime = 0f;
+        bigEmission.rateOverTime = 0f;
+
+        stationFogSmall.Stop();
+        stationFogBig.Stop();
+
+    }
+
+    IEnumerator ResetLoop()
+    {
+        round++;
+        float3 startPos = inSpline.EvaluatePosition(0f);
+        car.transform.position = startPos;
+
+        float3 tangent = inSpline.EvaluateTangent(0f);
+        car.transform.rotation = Quaternion.LookRotation(tangent);
+
+        yield return null;
+
+        splineAnim.Container = inSpline;
+        splineAnim.Easing = SplineAnimate.EasingMode.EaseOut;
+        splineAnim.Restart(true);
     }
 }
