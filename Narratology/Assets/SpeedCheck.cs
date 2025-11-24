@@ -31,6 +31,8 @@ public class SpeedCheck : MonoBehaviour
     public CameraController camSwitch;
     public bool isStopped = false;
 
+
+
     private void Start()
     {
         smallEmission = stationFogSmall.emission;

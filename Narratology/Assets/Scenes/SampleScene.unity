@@ -5692,29 +5692,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9095452, y: 1.6284096, z: 4.663105}
   m_Center: {x: -0.003954321, y: 0.045372844, z: -0.023473263}
---- !u!114 &679370390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149120121643}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineAnimate
-  m_Target: {fileID: 1351974496}
-  m_PlayOnAwake: 1
-  m_LoopMode: 0
-  m_Method: 1
-  m_Duration: 64.17424
-  m_MaxSpeed: 18
-  m_EasingMode: 2
-  m_AlignmentMode: 1
-  m_ObjectForwardAxis: 2
-  m_ObjectUpAxis: 1
-  m_StartOffset: 0
 --- !u!1001 &691137418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31922,7 +31899,6 @@ GameObject:
   m_Component:
   - component: {fileID: 543450653641564561}
   - component: {fileID: 679370389}
-  - component: {fileID: 679370390}
   - component: {fileID: 919132149120121644}
   - component: {fileID: 919132149120121645}
   m_Layer: 0
@@ -31986,7 +31962,7 @@ MonoBehaviour:
   openDoor: {fileID: 364822346}
   camSwitch: {fileID: 2094577929}
   speed: 15
-  rotationSpeed: 3
+  rotationSpeed: 5
   breakingDistance: 10
   reachThreshold: 0.1
 --- !u!4 &1135271923903736548
