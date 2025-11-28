@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController : MonoBehaviour 
 {
-    public GameObject mainCam, alleyCam, kioskInsideCam, toiletCam, carCam;
+    public GameObject mainCam, alleyCam, kioskInsideCam, toiletCam, carCam, secretDoor;
 
     void Start()
     {
@@ -32,6 +32,7 @@ public class CameraController : MonoBehaviour
     {
         mainCam.SetActive(false);
         kioskInsideCam.SetActive(true);
+        secretDoor.SetActive(false);
     }
 
     public void SwitchToToiletCam()
@@ -48,5 +49,10 @@ public class CameraController : MonoBehaviour
         alleyCam.SetActive(false);
         kioskInsideCam.SetActive(false);
         carCam.SetActive(true);
+    }
+    public void SwitchToSecretCam() {
+        kioskInsideCam.SetActive(false);
+        secretDoor.SetActive(true);
+
     }
 }

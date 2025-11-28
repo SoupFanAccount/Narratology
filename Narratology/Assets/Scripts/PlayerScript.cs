@@ -21,9 +21,9 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField] CameraController camControlScript;
 
-    [SerializeField] Transform cycle1Kiosk_Inside, cycle1Kiosk_Door, cycle1Toilet_Inside, cycle1Toilet_Door;
+    [SerializeField] Transform cycle1Kiosk_Inside, cycle1Kiosk_Door, cycle1Toilet_Inside, cycle1Toilet_Door, cycleSecret_Door, cycleSecret_Inside;
 
-    private bool atKioskDoor, atToiletDoor, atKioskInsideDoor, atToiletInsideDoor;
+    private bool atKioskDoor, atToiletDoor, atKioskInsideDoor, atToiletInsideDoor, atSecretDoor, atSecretInsideDoor;
 
     private bool isAtGasPump;
     public GameObject gasPumpCollider, goodGasPumpCollider;
@@ -113,6 +113,16 @@ public class PlayerScript : MonoBehaviour
             {
                 transform.position = cycle1Toilet_Door.position;
                 camControlScript.SwitchToAlleyCam();
+            }
+            if (atSecretDoor)
+            {
+                transform.position = cycleSecret_Inside.position;
+                camControlScript.SwitchToSecretCam();
+            }
+            if (atSecretInsideDoor)
+            {
+                transform.position = cycleSecret_Door.position;
+                camControlScript.SwitchToKioskInsideCam();
             }
 
             if (isAtGasPump)
@@ -214,6 +224,16 @@ public class PlayerScript : MonoBehaviour
         {
             isAtGasPump = true;
         }
+
+        if (other.CompareTag("SecretDoor"))
+        {
+            atSecretDoor = true;
+        }
+        
+        if (other.CompareTag("SecretInsideDoor"))
+        {
+            atSecretInsideDoor = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -259,6 +279,16 @@ public class PlayerScript : MonoBehaviour
         if (other.CompareTag("CantGas"))
         {
             isAtGasPump = false;
+        }
+
+        if (other.CompareTag("SecretDoor"))
+        {
+            atSecretDoor = false;
+        }
+
+        if (other.CompareTag("SecretInsideDoor"))
+        {
+            atSecretInsideDoor = false;
         }
     }
 

@@ -842,14 +842,14 @@ RectTransform:
   m_GameObject: {fileID: 145468628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.4584, y: 2.4584, z: 2.4584}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 920690082}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: 171}
+  m_AnchoredPosition: {x: -693.6, y: 431.4}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &145468630
@@ -2249,7 +2249,7 @@ RectTransform:
   m_GameObject: {fileID: 370130691}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.4584, y: 2.4584, z: 2.4584}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1529987331}
@@ -2257,7 +2257,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 112.6}
+  m_AnchoredPosition: {x: 0, y: 287.83}
   m_SizeDelta: {x: 247.11, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &370130693
@@ -4018,6 +4018,7 @@ MonoBehaviour:
   alleyCam: {fileID: 1711853581}
   kioskInsideCam: {fileID: 1300519301}
   toiletCam: {fileID: 491504941}
+  carCam: {fileID: 0}
 --- !u!1001 &580588974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18342,7 +18343,7 @@ RectTransform:
   m_GameObject: {fileID: 1281236751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.4584, y: 2.4584, z: 2.4584}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1331770033}
@@ -18350,7 +18351,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -193.1}
+  m_AnchoredPosition: {x: 0, y: -463.71}
   m_SizeDelta: {x: 247.11, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1281236753
@@ -20188,6 +20189,8 @@ MonoBehaviour:
   cycle1Kiosk_Door: {fileID: 1792005666}
   cycle1Toilet_Inside: {fileID: 595815694}
   cycle1Toilet_Door: {fileID: 1350778060}
+  gasPumpCollider: {fileID: 0}
+  goodGasPumpCollider: {fileID: 0}
 --- !u!114 &1407533466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20203,6 +20206,9 @@ MonoBehaviour:
   DialogueText: {fileID: 0}
   dialogueBox: {fileID: 0}
   DialogueSpeed: 0
+  timeBeforeDestroy: 0
+  imTalking: 0
+  talkingTokens: 0
 --- !u!1 &1413368166
 GameObject:
   m_ObjectHideFlags: 0
@@ -22069,7 +22075,7 @@ RectTransform:
   m_GameObject: {fileID: 1749635774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.4584, y: 2.4584, z: 2.4584}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1217422111}
@@ -22077,7 +22083,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 66.9}
+  m_AnchoredPosition: {x: 0, y: 175.48}
   m_SizeDelta: {x: 247.11, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1749635776
