@@ -1,14 +1,13 @@
 using UnityEngine;
 
-public class GasArea_NotToilet : MonoBehaviour
+public class StopGasBlink : MonoBehaviour
 {
     public SpeedCheck speedCheck;
-
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Car"))
+        if (other.CompareTag("Car"))
         {
-            speedCheck.carInside = true;
+            speedCheck.carInside = false;
             speedCheck.PlayGasAnimation();
         }
     }

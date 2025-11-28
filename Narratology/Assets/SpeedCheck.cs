@@ -84,6 +84,10 @@ public class SpeedCheck : MonoBehaviour
         {
             carAnimator.SetBool("needsGas", true);
         }
+        else
+        {
+            carAnimator.SetBool("needsGas", false);
+        }
     }
 
     IEnumerator PlayStopAnimation()
@@ -113,7 +117,7 @@ public class SpeedCheck : MonoBehaviour
     {
         carAnimator.SetBool("isStopped", false);
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
 
         camSwitch.SwitchToCrunchCam();
         guy.SetActive(false);
