@@ -4,12 +4,21 @@ public class WhereAreWe : MonoBehaviour
 {
     public int gameState = 0;
     PlayerScript player;
-    MakePlayerTalk playerTalk;
+
+    public UI_Dialogue_Sequence[] internalDialogues;
+
+   [SerializeField] UI_Dialogue_Trigger dialogueTrigger;
+    [SerializeField] UI_Dialogue_Test dialogueManager;
 
     void Awake()
     {
         player = GetComponent<PlayerScript>();
-        playerTalk = GetComponent<MakePlayerTalk>();
+    }
+
+    private void Start()
+    {
+        //TEST! Den her skal køres når bilen er stoppet :)
+        CheckGameStateAndDoStuff(1);
     }
 
     void AdvanceGameState(int advanceStep)
@@ -22,49 +31,28 @@ public class WhereAreWe : MonoBehaviour
         switch (gameState)
         {
             case 0: //Dude er lige stået ud af bilen og skal have noget benzin
-                //Play voice line: "I need to pay for gas inside before it can pump"
-                playerTalk.StartNewLine("I need to pay for gas inside before it can pump.");
+                dialogueManager.StartDialogue(internalDialogues[0]);
 
-                //For talking next time.
-                playerTalk.talkingTokens = 1;
+                //Her kan man også starte den første dialog med Clerk
+
                 break;
 
-            case 1: //Når man snakker med Clerk første gang
-                //Start dialogue med Clerk
-                if (playerTalk.imTalking && playerTalk.talkingTokens > 0)
-                {
-                    playerTalk.StartNewLine("Hello, can I get 10 gallons of gas?");
-                    DialogueFlags.instance.SetFlag("1st question");
-                    playerTalk.talkingTokens--;
-                    Debug.Log(playerTalk.talkingTokens);
-                }
+            case 1: //Når man taler med Clerk først
 
+                //Gaspump ACTIVE
+                Debug.Log("Gaspump ACTIVE");
                 player.gasPumpCollider.SetActive(true);
-
                 break;
 
             case 2: //Interact with Gas pump, but no receipt
                 //Play voice line: "Where's the receipt...?"
-                playerTalk.StartNewLine("Nothing? I could've sworn... Where's the receipt? Guess I'll ask the clerk.");
-                DialogueFlags.instance.SetFlag("Gas again");
+                dialogueManager.StartDialogue(internalDialogues[1]);
 
-                playerTalk.talkingTokens = 2;
+
                 break;   
 
             case 3: //Talk with clerk AGAIN
-                    //Play voice line: "Uh, I paid for gas???"
-                if(playerTalk.talkingTokens == 2)
-                {
-                    playerTalk.StartNewLine("Uh, I paid for some gas?");
-                    DialogueFlags.instance.SetFlag("Gas again 2");
-                    playerTalk.talkingTokens--;
-                }
-                else if(playerTalk.talkingTokens == 1)
-                {
-                    playerTalk.StartNewLine("Strange... Alright, I need 10 gallons.");
-                    DialogueFlags.instance.SetFlag("Gas again 3");
-                    playerTalk.talkingTokens--;
-                }
+
 
 
                 //If player walks into the mysterious room (not bathroom){
@@ -74,7 +62,6 @@ public class WhereAreWe : MonoBehaviour
 
             case 4: //Pump gas into car, SUCCESFULY
                 //Play voice line: "At least it pumps now"
-                playerTalk.StartNewLine("At least it pumps now. Time to go!");
                 break;
 
             case 5: //Get into car and drive away
