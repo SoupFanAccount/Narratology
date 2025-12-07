@@ -17,6 +17,7 @@ public class SpeedCheck : MonoBehaviour
 
     public GameObject car;
     public GameObject guy;
+    public GameObject entity;
 
     public int round = 0;
     public GasArea_NotToilet gasArea;
@@ -80,6 +81,7 @@ public class SpeedCheck : MonoBehaviour
 
     public void PlayGasAnimation()
     {
+        entity.SetActive(false);
         if(carInside == true && round != 2)
         {
             carAnimator.SetBool("needsGas", true);
@@ -121,6 +123,10 @@ public class SpeedCheck : MonoBehaviour
 
         camSwitch.SwitchToCrunchCam();
         guy.SetActive(false);
+        if (round == 1)
+        {
+            entity.SetActive(true);
+        }
 
         splineAnim.Easing = SplineAnimate.EasingMode.EaseIn;
         splineAnim.Container = outSpline;
