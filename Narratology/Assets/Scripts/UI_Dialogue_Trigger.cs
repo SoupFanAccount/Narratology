@@ -3,7 +3,7 @@ using UnityEngine;
 public class UI_Dialogue_Trigger : MonoBehaviour
 {
     [SerializeField] GameObject interactE;
-    InteractableShowE eScript;
+    public InteractableShowE eScript;
 
     public UI_Dialogue_Sequence[] sequence;
     public UI_Dialogue_Test manager;

@@ -7,7 +7,7 @@ public class UI_Dialogue_Test : MonoBehaviour
     [System.Serializable]
     public class DialogueLine
     {
-        public enum Speaker { Clerk, Player }
+        public enum Speaker { Clerk, Player, Radio}
         public Speaker speaker;
         [TextArea] public string text;
     }
@@ -25,27 +25,23 @@ public class UI_Dialogue_Test : MonoBehaviour
     public UI_Dialogue_Trigger dialogueTrigger;
 
     public bool onGoingDialogue = false;
-
-
-    void Start()
-    {
-        panel.SetActive(false);
-    }
+    public bool singleLineGoingOn = false;
 
     private void Update()
     {
         if (onGoingDialogue)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 NextLine();
             }
         }
+
     }
 
     public void StartDialogue(UI_Dialogue_Sequence sequence)
     {
-        dialogueTrigger.canBeTalkedTo = false; //Skift, så man ikke kan snakke med ham igen om det samme
+        //dialogueTrigger.canBeTalkedTo = false; //Skift, så man ikke kan snakke med ham igen om det samme
 
         currentSequence = sequence;
         index = 0;
@@ -90,4 +86,5 @@ public class UI_Dialogue_Test : MonoBehaviour
         panel.SetActive(false);
         onGoingDialogue = false;
     }
+
 }

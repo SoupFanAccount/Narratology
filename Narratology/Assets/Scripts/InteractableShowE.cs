@@ -16,6 +16,12 @@ public class InteractableShowE : MonoBehaviour
         isInteractable = true;
     }
 
+    public void TurnOn()
+    {
+        actionIndicator.SetActive(true);
+        isInteractable = true;
+    }
+
     // This shows the indicator
     private void OnTriggerEnter(Collider other)
     {

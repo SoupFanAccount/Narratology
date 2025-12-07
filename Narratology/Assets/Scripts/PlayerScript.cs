@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerScript : MonoBehaviour
 {
-    WhereAreWe whereAreWe;
+   public WhereAreWe whereAreWe;
 
    private Rigidbody rb;
    private Animator anim;
@@ -25,12 +25,13 @@ public class PlayerScript : MonoBehaviour
 
     private bool atKioskDoor, atToiletDoor, atKioskInsideDoor, atToiletInsideDoor, atSecretDoor, atSecretInsideDoor;
 
-    private bool isAtGasPump;
-    public GameObject gasPumpCollider, goodGasPumpCollider;
 
-    
-   // De her 2 holder styr på hvilken ting man kan interegere med currently 
-   private GameObject currentCollectable;
+    public bool item1Collected = false;
+    public bool item2Collected = false;
+
+
+    // De her 2 holder styr på hvilken ting man kan interegere med currently 
+    private GameObject currentCollectable;
    private GameObject currentInteractable;
    void Start()
    {
@@ -39,11 +40,7 @@ public class PlayerScript : MonoBehaviour
        interact = InputSystem.actions.FindAction("Interact");
        interact.Enable();
 
-        whereAreWe = GetComponent<WhereAreWe>();
-        whereAreWe.CheckGameStateAndDoStuff(1);
-
-        gasPumpCollider.SetActive(false);
-        goodGasPumpCollider.SetActive(false);
+        whereAreWe.CheckGameStateAndDoStuff(1); //THIS needs to be called when exiting the car!!!! <--------------------------------
    }
    
 
@@ -57,40 +54,6 @@ public class PlayerScript : MonoBehaviour
 
    private void Update()
    {
-       if (interact.WasPressedThisFrame())
-       {
-            if (DialogueManager.instance != null && DialogueManager.instance.IsDialogueActive())
-            {
-                // Hvis man er i en dialog, bliver "interact" brugt til at gå videre i dialogen.
-                DialogueManager.instance.AdvanceDialogue();
-            }
-
-            else
-            {
-                // Hvis man ikke er en dialog, så kan man interegere med objekter. 
-                if (currentCollectable != null)
-                {
-                    //Vi kunne bruge inventory.Add(currentCollectable.name); e.g. hvis vi vil have et inventory system (men det har vi ik!)
-                    Debug.Log("Du samlede " + currentCollectable.name + "op makker");
-                    // DialogueFlags er et static script der holder styr på conditions.
-                    // Så jeg kalder funktioner fra det når jeg skal have shit i det.
-                    DialogueFlags.instance.SetFlag(currentCollectable.name);
-                    Destroy(currentCollectable);
-
-                    currentCollectable = null;
-                }
-                else if (currentInteractable != null)
-                {
-                    Debug.Log("Du interegerede med " + currentInteractable.name + " makker");
-                    // Try to get the Interactable component from the object
-                    Interactable interactableComponent = currentInteractable.GetComponent<Interactable>();
-                    if (interactableComponent != null)
-                    {
-                        interactableComponent.StartDialogueFromPlayer();
-                    }
-                }
-            }
-        }
 
 
         if (Input.GetKeyDown(KeyCode.E)){
@@ -125,22 +88,6 @@ public class PlayerScript : MonoBehaviour
                 camControlScript.SwitchToKioskInsideCam();
             }
 
-            if (isAtGasPump)
-            {
-                if(whereAreWe.gameState == 4)
-                {
-                    goodGasPumpCollider.gameObject.SetActive(false);
-                }
-                
-                if(gasPumpCollider != null)
-                {
-                    Destroy(gasPumpCollider);
-                }
-
-                whereAreWe.CheckGameStateAndDoStuff(1);
-
-                isAtGasPump = false;
-            }
         }
    }
 
@@ -216,14 +163,7 @@ public class PlayerScript : MonoBehaviour
         }
 
 
-        if (other.CompareTag("CantGas"))
-        {
-            isAtGasPump = true;
-        }
-        if (other.CompareTag("PumpGas"))
-        {
-            isAtGasPump = true;
-        }
+
 
         if (other.CompareTag("SecretDoor"))
         {
@@ -276,11 +216,6 @@ public class PlayerScript : MonoBehaviour
         }
 
 
-        if (other.CompareTag("CantGas"))
-        {
-            isAtGasPump = false;
-        }
-
         if (other.CompareTag("SecretDoor"))
         {
             atSecretDoor = false;
@@ -291,5 +226,4 @@ public class PlayerScript : MonoBehaviour
             atSecretInsideDoor = false;
         }
     }
-
 }

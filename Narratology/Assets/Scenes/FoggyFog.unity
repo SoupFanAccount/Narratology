@@ -4893,6 +4893,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -305091885687274788, guid: 3761d227f439781489e37a58096c0116, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f19304ee422a9144ea60aa2542ebf58f, type: 2}
     - target: {fileID: 919132149155446097, guid: 3761d227f439781489e37a58096c0116, type: 3}
       propertyPath: m_Name
       value: Backroom Door

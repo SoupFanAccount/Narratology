@@ -3,27 +3,48 @@ using UnityEngine;
 public class WhereAreWe : MonoBehaviour
 {
     public int gameState = 0;
-    PlayerScript player;
+    public PlayerScript player;
+
+    [SerializeField] InteractCollidersController colliderController;
 
     public UI_Dialogue_Sequence[] internalDialogues;
 
    [SerializeField] UI_Dialogue_Trigger dialogueTrigger;
     [SerializeField] UI_Dialogue_Test dialogueManager;
 
+    public GameObject[] gameStateTriggers;
+    public int gameStateTriggerCounter = 0;
+
+    [SerializeField] GameObject mysteryDoor, mysteryDoorLocked;
+
     void Awake()
     {
-        player = GetComponent<PlayerScript>();
+
     }
 
     private void Start()
     {
         //TEST! Den her skal køres når bilen er stoppet :)
-        CheckGameStateAndDoStuff(1);
+        //CheckGameStateAndDoStuff(1);
+
+        mysteryDoor.SetActive(false);
+        mysteryDoorLocked.SetActive(true);
     }
 
     void AdvanceGameState(int advanceStep)
     {
         gameState += advanceStep;
+    }
+
+    void NewGameStateTrigger()
+    {
+        gameStateTriggers[gameStateTriggerCounter].SetActive(true);
+        gameStateTriggerCounter++;
+    }
+
+    void GoToNextClerkDialogue()
+    {
+        dialogueTrigger.whichSequence++;
     }
 
     public void CheckGameStateAndDoStuff(int advanceNumber)
@@ -32,26 +53,39 @@ public class WhereAreWe : MonoBehaviour
         {
             case 0: //Dude er lige stået ud af bilen og skal have noget benzin
                 dialogueManager.StartDialogue(internalDialogues[0]);
+                Debug.Log("Game Start");
 
-                //Her kan man også starte den første dialog med Clerk
+                //Turn on the first gameStateTrigger - Clerk talk first time
+                NewGameStateTrigger();
+
+                //Her kan man også starte den første dialog med Clerk, når man går indenfor
 
                 break;
 
-            case 1: //Når man taler med Clerk først
+            case 1: //Når man går hen for at tale med Clerk først
 
                 //Gaspump ACTIVE
                 Debug.Log("Gaspump ACTIVE");
-                player.gasPumpCollider.SetActive(true);
+                colliderController.gasPumpCollider.SetActive(true);
                 break;
 
             case 2: //Interact with Gas pump, but no receipt
                 //Play voice line: "Where's the receipt...?"
                 dialogueManager.StartDialogue(internalDialogues[1]);
 
+                //Go to next clerk dialouge - "uhh, I paid for some gas"
+                GoToNextClerkDialogue();
+
+                //Turn on gameStateTrigger that makes gas pump work again
+                NewGameStateTrigger();
 
                 break;   
 
-            case 3: //Talk with clerk AGAIN
+            case 3: //Walk in to talk to the clerk again to get TRUE GAS
+                //Trigger 2 leads to here
+
+                colliderController.goodGasPumpCollider.SetActive(true);
+                Debug.Log("True gas is active");
 
 
 
@@ -62,6 +96,11 @@ public class WhereAreWe : MonoBehaviour
 
             case 4: //Pump gas into car, SUCCESFULY
                 //Play voice line: "At least it pumps now"
+                dialogueManager.StartDialogue(internalDialogues[2]);
+                
+
+                //Turn on collider for taking car!!!
+
                 break;
 
             case 5: //Get into car and drive away
@@ -74,6 +113,9 @@ public class WhereAreWe : MonoBehaviour
 
             case 6: //Arrive at gas station AGAIN
                 //Play voice line: "I could use a bathroom. I'll go ask inside"
+
+
+                //END THE GAME HERE!!! ----------------------------------------------------------------------------
                 break;
 
             case 7: //Talk with the clerk

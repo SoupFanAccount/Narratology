@@ -17,6 +17,9 @@ TagManager:
   - Car
   - SecretDoor
   - SecretInsideDoor
+  - GameStateObject
+  - DialogueManager
+  - lockedMysteryDoor
   layers:
   - Default
   - TransparentFX

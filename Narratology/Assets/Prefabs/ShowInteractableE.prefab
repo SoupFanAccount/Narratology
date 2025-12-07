@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 260662853614446105}
   - component: {fileID: 4435781974894938970}
+  - component: {fileID: 6618797708657329458}
   m_Layer: 0
   m_Name: ShowInteractableE
   m_TagString: Untagged
@@ -25,14 +26,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439653124636237074}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.3735228, z: -0, w: 0.927621}
-  m_LocalPosition: {x: -2.499, y: -14.529, z: 4.465}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4526694340309269343}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -43.866, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4435781974894938970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,6 +47,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableShowE
   actionIndicator: {fileID: 2473274137859185877}
+  isInteractable: 1
+--- !u!65 &6618797708657329458
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439653124636237074}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2389075629193149811
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,17 +95,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2389075629193149811}
-  m_LocalRotation: {x: 0.0062538167, y: 0.3800121, z: 0.013748296, w: 0.9248582}
-  m_LocalPosition: {x: 0, y: 0, z: -4.0438876}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4873824265178298496}
   m_Father: {fileID: 260662853614446105}
-  m_LocalEulerAnglesHint: {x: 0.064, y: -0.325, z: 1.73}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1.7936141, y: 15.21057}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8953629194060162702
