@@ -32,7 +32,10 @@ public class SpeedCheck : MonoBehaviour
     public CameraController camSwitch;
     public bool isStopped = false;
 
+    [SerializeField] WhereAreWe whereAreWe;
+    [SerializeField] UI_Dialogue_Test dialougeManager;
 
+    public bool needsGas = false;
 
     private void Start()
     {
@@ -81,8 +84,8 @@ public class SpeedCheck : MonoBehaviour
 
     public void PlayGasAnimation()
     {
-        entity.SetActive(false);
-        if(carInside == true && round != 2)
+        //entity.SetActive(false);
+        if(carInside == true && round != 2 && needsGas)
         {
             carAnimator.SetBool("needsGas", true);
         }
@@ -106,7 +109,13 @@ public class SpeedCheck : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
 
+        entity.SetActive(false);
+        if (dialougeManager.onGoingDialogue)
+        {
+            dialougeManager.EndDialogue();
+        }
         guy.SetActive(true);
+        whereAreWe.CheckGameStateAndDoStuff(1); //Advance to the next game state
         camSwitch.SwitchToMainCam();
     }
 

@@ -18241,7 +18241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &840870206
 AudioListener:
   m_ObjectHideFlags: 0
@@ -19117,7 +19117,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &894848093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20501,7 +20501,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 974342779}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9a39f9d52c0efa4ebdff365adcf11bb, type: 3}
   m_Name: 
@@ -20512,6 +20512,7 @@ MonoBehaviour:
   carAnimator: {fileID: 974342782}
   car: {fileID: 974342779}
   guy: {fileID: 1407533456}
+  entity: {fileID: 0}
   round: 0
   gasArea: {fileID: 528061623}
   carInside: 0
@@ -20520,6 +20521,8 @@ MonoBehaviour:
   carFog: {fileID: 560093118}
   camSwitch: {fileID: 574469610}
   isStopped: 0
+  whereAreWe: {fileID: 0}
+  dialougeManager: {fileID: 0}
 --- !u!95 &974342782
 Animator:
   serializedVersion: 7
@@ -20614,12 +20617,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 974342779}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d98465798f3419b4a841561689168fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
   car: {fileID: 974342781}
+  dialogueManager: {fileID: 0}
+  sequence: {fileID: 0}
+  canTakeCar: 0
 --- !u!54 &974342787
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -32599,6 +32605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9e17d79964f85a46ac9ab8b0909d304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
+  whereAreWe: {fileID: 0}
   walkAnimThreshold: 0.5
   speed: 18
   camControlScript: {fileID: 574469610}
@@ -32608,8 +32615,8 @@ MonoBehaviour:
   cycle1Toilet_Door: {fileID: 1350778060}
   cycleSecret_Door: {fileID: 0}
   cycleSecret_Inside: {fileID: 0}
-  gasPumpCollider: {fileID: 60990520}
-  goodGasPumpCollider: {fileID: 1680420777}
+  item1Collected: 0
+  item2Collected: 0
 --- !u!114 &1407533466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32641,6 +32648,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WhereAreWe
   gameState: 0
+  player: {fileID: 0}
+  colliderController: {fileID: 0}
+  internalDialogues: []
+  dialogueTrigger: {fileID: 0}
+  dialogueManager: {fileID: 0}
+  gameStateTriggers: []
+  gameStateTriggerCounter: 0
+  mysteryDoor: {fileID: 0}
+  mysteryDoorLocked: {fileID: 0}
+  radioStaticCollider: {fileID: 0}
+  seeGasStationAgainCollider: {fileID: 0}
+  enterCarScript: {fileID: 0}
 --- !u!1 &1413368166
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,10 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed919922e3f2f6449bb8c901d7a9ff29, type: 3}
-  m_Name: Radio Static
+  m_Name: Car needs gas
   m_EditorClassIdentifier: Assembly-CSharp::UI_Dialogue_Sequence
   lines:
-  - speaker: 2
-    text: '*bzzzt* Seven... *bbbZzzzzz* ...people... *bBzzzzZZz* ...missing... *bbZzz*'
   - speaker: 1
-    text: Huh... strange broadcast
+    text: My car needs gas before it can drive again

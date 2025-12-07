@@ -17,6 +17,7 @@ public class UI_Dialogue_Test : MonoBehaviour
     public GameObject panel;
     public GameObject clerkPortrait;
     public GameObject playerPortrait;
+    public GameObject radioPortrait;
     public TextMeshProUGUI dialogueText;
 
     private UI_Dialogue_Sequence currentSequence;
@@ -66,16 +67,31 @@ public class UI_Dialogue_Test : MonoBehaviour
         DialogueLine line = currentSequence.lines[index];
 
         // Toggle speaker visibility
-        bool clerkSpeaking = line.speaker == DialogueLine.Speaker.Clerk;
-        if (clerkSpeaking)
+        bool radioSpeaking = line.speaker == DialogueLine.Speaker.Radio;
+        if (radioSpeaking)
         {
-            clerkPortrait.SetActive(true);
+            Debug.Log("Radio talking");
+            radioPortrait.SetActive(true); //RADIO IS TALKING! SHhHH
+            clerkPortrait.SetActive(false);
             playerPortrait.SetActive(false);
         }
         else
         {
-            clerkPortrait.SetActive(false);
-            playerPortrait.SetActive(true);
+            bool clerkSpeaking = line.speaker == DialogueLine.Speaker.Clerk;
+            if (clerkSpeaking)
+            {
+                Debug.Log("Clerk is speaking");
+                clerkPortrait.SetActive(true);
+                playerPortrait.SetActive(false);
+                radioPortrait.SetActive(false);
+            }
+            else
+            {
+                Debug.Log("Player is speaking");
+                clerkPortrait.SetActive(false);
+                playerPortrait.SetActive(true);
+                radioPortrait.SetActive(false);
+            }
         }
 
         dialogueText.text = line.text;

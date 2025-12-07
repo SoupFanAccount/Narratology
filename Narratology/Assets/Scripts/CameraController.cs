@@ -45,6 +45,7 @@ public class CameraController : MonoBehaviour
 
     public void SwitchToCrunchCam()
     {
+        mainCam.SetActive(false);
         toiletCam.SetActive(false);
         alleyCam.SetActive(false);
         kioskInsideCam.SetActive(false);

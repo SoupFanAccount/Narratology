@@ -8,6 +8,7 @@ public class GasArea_NotToilet : MonoBehaviour
     {
         if(other.CompareTag("Car"))
         {
+            speedCheck.needsGas = true;
             speedCheck.carInside = true;
             speedCheck.PlayGasAnimation();
         }

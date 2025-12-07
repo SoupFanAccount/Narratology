@@ -6,6 +6,10 @@ public class EnterCar : MonoBehaviour
 
     bool playerInside = false;
 
+    [SerializeField] UI_Dialogue_Test dialogueManager;
+    [SerializeField] UI_Dialogue_Sequence sequence;
+    public bool canTakeCar = false;
+
     void Start()
     {
         
@@ -13,7 +17,7 @@ public class EnterCar : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("stimkyy");
+        //Debug.Log("stimkyy");
         if(other.CompareTag("Player"))
         {
             playerInside = true;
@@ -30,9 +34,21 @@ public class EnterCar : MonoBehaviour
 
     void Update()
     {
-        if(playerInside && Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            car.EnterCar();
+            if (playerInside)
+            {
+                if (canTakeCar)
+                {
+                    car.EnterCar();
+                }
+                else
+                {
+                    //Player says, I need to put gas on!
+                    dialogueManager.StartDialogue(sequence);
+                }
+
+            }
         }
     }
 }

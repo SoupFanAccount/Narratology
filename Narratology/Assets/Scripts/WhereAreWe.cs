@@ -16,6 +16,10 @@ public class WhereAreWe : MonoBehaviour
     public int gameStateTriggerCounter = 0;
 
     [SerializeField] GameObject mysteryDoor, mysteryDoorLocked;
+    [SerializeField] GameObject radioStaticCollider, seeGasStationAgainCollider, lookInMirrorCollider;
+
+    [SerializeField] EnterCar enterCarScript;
+    [SerializeField] SpeedCheck speedCheck;
 
     void Awake()
     {
@@ -97,7 +101,15 @@ public class WhereAreWe : MonoBehaviour
             case 4: //Pump gas into car, SUCCESFULY
                 //Play voice line: "At least it pumps now"
                 dialogueManager.StartDialogue(internalDialogues[2]);
-                
+
+                //Make Player able to take car and STOP BLINKER
+                enterCarScript.canTakeCar = true;
+                speedCheck.needsGas = false;
+
+                //Turn on radio static, seeGasStationAgain, and lookInMirror colliders
+                radioStaticCollider.SetActive(true);
+                seeGasStationAgainCollider.SetActive(true);
+                lookInMirrorCollider.SetActive(true);
 
                 //Turn on collider for taking car!!!
 
@@ -109,10 +121,17 @@ public class WhereAreWe : MonoBehaviour
                     //Internal monologue: "Must be because im tired"
                     //*Sees gas station again*, "Did I drive in circles?" *parks at station*
                     //Radio plays: "*inaudible* - seven people - *inaudible* - missing"
+
+                //Play voice line: "I could use a bathroom. I'll go ask inside"
+                dialogueManager.StartDialogue(internalDialogues[3]); //Snack and toilet time :D
+
+                //Go to next clerk voice lines
+                GoToNextClerkDialogue();
+
                 break;
 
-            case 6: //Arrive at gas station AGAIN
-                //Play voice line: "I could use a bathroom. I'll go ask inside"
+            case 6: //Arrive at gas station AGAIN and talk with clerk
+                
 
 
                 //END THE GAME HERE!!! ----------------------------------------------------------------------------

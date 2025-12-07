@@ -39,8 +39,6 @@ public class PlayerScript : MonoBehaviour
        anim = GetComponent<Animator>();
        interact = InputSystem.actions.FindAction("Interact");
        interact.Enable();
-
-        whereAreWe.CheckGameStateAndDoStuff(1); //THIS needs to be called when exiting the car!!!! <--------------------------------
    }
    
 
